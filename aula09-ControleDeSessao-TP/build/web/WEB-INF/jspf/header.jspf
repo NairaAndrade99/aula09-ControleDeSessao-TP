@@ -1,0 +1,58 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+      String usuario = request.getParameter("usuario");
+      session.removeAttribute("");
+      
+      if (usuario!=null && !usuario.isEmpty()){
+          session.setAttribute("usuario",usuario);
+          response.sendRedirect(request.getRequestURI());
+          
+    }if (request.getParameter("logoff")!=null){
+        session.removeAttribute("usuario");
+       response.sendRedirect(request.getRequestURI());
+        
+    }
+        
+    
+    // if (request.getParameter("logoff") !=null){
+      //   session.invalidate();
+       // response.sendRedirect(request.getRequestURI());
+        
+   //}
+    if (request.getParameter("usuario")!=null){
+       if (session.getAttribute("counter")==null){
+          session.setAttribute("counter",0);
+    }
+      int counter = (int)session.getAttribute("counter");
+      if (counter==12)
+          counter++;
+     session.setAttribute("counter",counter+1);
+      
+   
+    }
+      
+
+%>
+<h2>NairaApp</h2>
+
+<% if  (session.getAttribute("usuario")== null){%>
+<div>Identifique-se para ter acesso ao site</div>
+<form>
+    usuario <input type="text" name="usuario"/>
+            <input type="submit" value="logar"/>
+    
+ </form>   
+  <%}else {%>  
+    <form>
+     
+     <a href="index.jsp">Indice</a> |
+     <a href="aboute.jsp">informativa</a> |
+     <a href="loteria.jsp">dicas para loteria</a> |
+        bem vindo,<b><%=session.getAttribute("usuario")%></b>
+     <input type="submit" name="logoff" value="sair"/>
+     
+     <p>identificado usuário na sessão:<b><%=session.getAttribute("counter")%></b></p>
+     
+ </form>
+<%}%> 
