@@ -19,7 +19,7 @@
     <div>Identifique-se para ter acesso ao site</div>
     <form>
         <input type="text" name="usuario"/>
-        <input type="submit" name="logon" value="Entrar"/>
+        <input type="submit" name="logar" value="entrar"/>
     </form>
     <%}else{%>
        <h2>Loteria</h2> 
