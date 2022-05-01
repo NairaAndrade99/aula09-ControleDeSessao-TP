@@ -2,9 +2,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <%
       String usuario = request.getParameter("usuario");
+      String logar = request.getParameter("logar");
       session.removeAttribute("");
       
-      if (usuario!=null && !usuario.isEmpty()){
+      if (logar!=null && !usuario.isEmpty()){
           session.setAttribute("usuario",usuario);
           response.sendRedirect(request.getRequestURI());
           
@@ -40,7 +41,7 @@
 <div>Identifique-se para ter acesso ao site</div>
 <form>
     usuario <input type="text" name="usuario"/>
-            <input type="submit" value="logar"/>
+            <input type="submit" name="logar" value="entrar"/>
     
  </form>   
   <%}else {%>  
