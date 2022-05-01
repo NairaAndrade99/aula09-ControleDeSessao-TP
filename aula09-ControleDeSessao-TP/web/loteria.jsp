@@ -15,31 +15,36 @@
         <a href="index.jsp">voltar</a> 
         <h1>GERAR NUMEROS DA SORTE</h1>
        
-        <%
-           int n = 6;
-            
-            out.println("<hr/>");
-            
-            out.println("<center><form>");
-            ///out.println("<input type='submit' value='gerar' />");
-            out.println("<table border='3'>");
-            out.println("<tr><th>indice</th><th>numero da sorte</th></tr>");
-            for (int i =1;i<=n;i++){
-            
-            out.println("<tr><center>");
-            out.println("<td><center>"+i+"</center></td>");
-            out.println("<td><center>"+((int)(Math.random()*60))+"</center></td>");
-            out.println("</tr>");
-            out.println("");
-            }
-            
-            out.println("</table>");
-            out.println("<hr/>");
-            out.println("<input type='submit' value='sorte' />");
-            out.println("</center></form>");    
-           %>  
-            
-           
+        <%if(session.getAttribute("usuario")==null){%>
+    <div>Identifique-se para ter acesso ao site</div>
+    <form>
+        <input type="text" name="usuario"/>
+        <input type="submit" name="logon" value="Entrar"/>
+    </form>
+    <%}else{%>
+       <h2>Loteria</h2> 
+        
+       <hr/>
+         
+          <center><form>
+              <table border='3'>
+                <tr><th>indice</th><th>numero da sorte</th></tr>
+                     <% for (int i = 1; i <= 6; i++) { %>
+                
+                <tr><center>
+                      <td><center><%=i%></center></td>
+                         <td><center><%=((int)(Math.random()*60))%></center></td>
+                    
+                   
+            </tr>
+                  
+                  <%}%>
+                </table>
+            <hr/>
+            </center></form>
+        <% }%>
+        
+         
+          
     </body>
 </html>
-     
